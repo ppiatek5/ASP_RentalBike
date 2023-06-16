@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApplication4.Models.ApplicationUserRole>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Przypisz role</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info"><i class="fas fa-plus mr-2"></i>Przypisz nową rolę</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.Name)
+            </td>
+            <td>
+@*                @Html.ActionLink("Edit", "Edit", new {  id=item.UserId  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.UserId  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.UserId  })*@
+                        <a asp-action="Edit" asp-route-id="@item.UserId" class="text-info mr-2" title="Edycja"><i class="fas fa-edit"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.UserId" class="text-dark mr-2" title="Detale"><i class="fas fa-table"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.UserId" class="text-danger mr-2" title="Usuń"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

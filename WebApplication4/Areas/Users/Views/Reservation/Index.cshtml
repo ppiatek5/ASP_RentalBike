@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApplication4.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Rezerwacje</h1>
+
+<p>
+    <a asp-action="CreateAdmin" class="btn btn-outline-info"><i class="fas fa-plus mr-2"></i>Dodaj rezerwację</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Początek rezerwacji
+            </th>
+            <th>
+                Koniec rezerwacji
+            </th>
+            <th>
+                Identyfikator pojazdu
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.reservationStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reservationEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleId)
+            </td>
+            <td>
+               <a asp-action="Edit" asp-route-id="@item.Id" class="text-info mr-2" title="Edycja"><i class="fas fa-edit"></i></a>
+               <a asp-action="Details" asp-route-id="@item.Id" class="text-dark mr-2" title="Detale"><i class="fas fa-table"></i></a>
+               <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger mr-2" title="Usuń">Zwróć pojazd</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+   

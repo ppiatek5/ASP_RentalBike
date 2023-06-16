@@ -1,0 +1,42 @@
+﻿@model WebApplication4.Models.Reservation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Zarezerwuj pojazd</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="reservationStart" class="control-label">Początek rezerwacji</label>
+                <input asp-for="reservationStart" class="form-control" />
+                <span asp-validation-for="reservationStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="reservationEnd" class="control-label">Koniec rezerwacji</label>
+                <input asp-for="reservationEnd" class="form-control" />
+                <span asp-validation-for="reservationEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VehicleId" class="control-label">Pojazd</label>
+                <select asp-for="VehicleId" class ="form-control" asp-items="ViewBag.VehicleId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="resBtn" value="Zarezerwuj" class="btn btn-primary" onclick="return alert ('Zarezerwowano pojazd.');" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-area="" asp-controller="Home" asp-action="Index">Powrót</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
